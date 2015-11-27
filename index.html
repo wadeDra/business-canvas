@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>商业模式画布</title>
+    <meta charset="UTF-8">
+    <meta name=description content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/util.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<div class="navbar navbar-inverse site-navbar" id="site-navbar" data-counter-url="/user_remind_counter" style="z-index: 99999; border-bottom: 1px solid black">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand-logo" href="/"><img src="./img/logo.png"></a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class=" dropdown ">
+                    <a href="/course/explore?fliter=all&amp;orderBy=latest" class=" dropdown-toggle " data-toggle="dropdown">全部课程  <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/course/explore/chanping?fliter=all&amp;orderBy=latest">产品</a></li>
+                        <li><a href="/course/explore/sheji?fliter=all&amp;orderBy=latest">设计</a></li>
+                        <li><a href="/course/explore/yunying?fliter=all&amp;orderBy=latest">运营</a></li>
+                        <li><a href="/course/explore/sheji?fliter=all&amp;orderBy=latest">技术</a></li>
+                    </ul>
+                </li>
+                <li class="">
+                    <a href="/classroom/1/introduction" class="">课程体系 </a>
+                </li>
+                <li class="">
+                    <a href="/article" class="" target="_blank">最新资讯 </a>
+                </li>
+                <li class="">
+                    <a href="/vip" class="" target="_blank">会员专区 </a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="hidden-xs hidden-sm">
+                    <form class="navbar-form navbar-right" action="/search" method="get">
+                        <div class="form-group">
+                            <input class="form-control" name="q" placeholder="搜索">
+                            <button class="button es-icon es-icon-search"></button>
+                        </div>
+                    </form>
+                </li>
+                <li><a href="/login?goto=%2Fbmc%2F">登录</a></li>
+                <li><a href="/register?goto=%2Fbmc%2F">注册</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="page-side" id="sider">
+    <input type="hidden" id="open" value="false">
+
+    <div class="toggler">
+        <span class="glyphicon glyphicon-chevron-right" style="display: block;">&nbsp;</span>
+        <span class="glyphicon glyphicon-chevron-left" style="display: none;">&nbsp;</span>
+    </div>
+    <div style="margin-top: 70px; margin-bottom: 50px"></div>
+    <div id="add-canvas">
+        <span class="glyphicon glyphicon-plus"></span>
+        <span class="side-menu">新建</span>
+    </div>
+    <div id="in-canvas">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="side-menu">导入</span>
+    </div>
+    <div class="my-canvas side-div">
+        <span class="glyphicon glyphicon-th-list"></span>
+        <span class="side-menu">我的画布</span>
+    </div>
+    <ul id="my-canvas">
+    </ul>
+</div>
+
+<div class="container business-body" id="business-app" style="margin-top: 20px; min-height: 700px;">
+    <div class="row">
+        <div class="title-name">
+            <h4 id="name">标题</h4>
+            <input type="text" class="edit" id="name-text"
+                   style="font-size: 24px; border: none; background: transparent;" value="标题">
+            <button class="btn btn-default" type="button" id="upload-btn"
+            style="position: absolute; right: 0; top: 10px; background: #33CCFF; color: #ffffff;"
+            >保存</button>
+        </div>
+        <div class="version">
+            <div><span>版本号:</span><span id="version"></span></div>
+            <input type="text" class="edit" id="version-text"
+                   style="font-size: 24px; border: none; background: transparent;" value="版本号">
+
+        </div>
+
+        <table class="table" cellpadding="0">
+            <tbody>
+            <tr>
+                <td class="col-xs-12 business-box" rowspan="2" colspan="2">
+                    <div class="business-box-p">
+                        <span>重要合作</span>
+                        <i class="glyphicon glyphicon-link icon-color"></i>
+                        <!--<input type="text" class="new-item" data-type="important">-->
+                        <!--<button type="button" class="btn btn-default add-btn pull-right">+</button>-->
+                        <ul class="b-ul item-list" id="important">
+                        </ul>
+                    </div>
+                </td>
+                <td class="col-xs-12 business-box" rowspan="1" colspan="2">
+                    <div class="business-box-p">
+                        <span>关键业务</span>
+                        <i class="glyphicon glyphicon-check icon-color"></i>
+
+                        <ul class="b-ul item-list" id="key">
+                        </ul>
+                    </div>
+                </td>
+                <td class="col-xs-12 business-box" rowspan="2" colspan="2">
+                    <div class="business-box-p">
+                        <span>价值主张</span>
+                        <i class="glyphicon glyphicon-gift icon-color"></i>
+
+                        <!--<input type="text" class="new-item" data-type="value">-->
+                        <!--<button type="button" class="btn btn-default add-btn">+</button>-->
+                        <ul class="b-ul item-list" id="value">
+                        </ul>
+                    </div>
+                </td>
+                <td class="col-xs-12 business-box" rowspan="1" colspan="2">
+                    <div class="business-box-p">
+                        <span>客户关系</span>
+                        <i class="glyphicon glyphicon-user icon-color"></i>
+                        <!--<input type="text" class="new-item" data-type="relations">-->
+                        <!--<button type="button" class="btn btn-default add-btn">+</button>-->
+                        <ul class="b-ul item-list" id="relations">
+                        </ul>
+                    </div>
+                </td>
+                <td class="col-xs-12 business-box border-right" rowspan="2" colspan="2">
+                    <div class="business-box-p">
+                        <span>客户细分</span>
+                        <i class="glyphicon glyphicon-tree-deciduous icon-color"></i>
+                        <!--<input type="text" class="new-item" data-type="segmentation">-->
+                        <!--<button type="button" class="btn btn-default add-btn">+</button>-->
+                        <ul class="b-ul item-list" id="segmentation">
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-xs-12 business-box" rowspan="1" colspan="2">
+
+                    <div class="business-box-p">
+                        <span>核心资源</span>
+                        <!--<input type="text" class="new-item" data-type="core">-->
+                        <!--<button type="button" class="btn btn-default add-btn">+</button>-->
+                        <i class="glyphicon glyphicon-send icon-color"></i>
+                        <ul class="b-ul item-list" id="core">
+                        </ul>
+                    </div>
+                </td>
+
+                <td class="col-xs-12 business-box" rowspan="1" colspan="2">
+                    <div class="business-box-p">
+                        <span>渠道铺路</span>
+                        <!--<input type="text" class="new-item" data-type="channel">-->
+                        <!--<button type="button" class="btn btn-default add-btn">+</button>-->
+                        <i class="glyphicon glyphicon-link icon-color"></i>
+                        <ul class="b-ul item-list" id="channel">
+                        </ul>
+                    </div>
+                </td>
+
+            </tr>
+            <tr>
+                <td class="col-xs-12 col-md-6 business-box" rowspan="2" colspan="5">
+                    <div class="business-box-p">
+                        <span>成本结构</span>
+                        <!--<input type="text" class="new-item" data-type="cost">-->
+                        <!--<button type="button" class="btn btn-default add-btn">+</button>-->
+                        <i class="glyphicon glyphicon-tags icon-color"></i>
+                        <ul class="b-ul item-list" id="cost">
+                        </ul>
+                    </div>
+                </td>
+                <td class="col-xs-12 col-md-6 business-box" rowspan="2" colspan="5">
+                    <div class="business-box-p">
+                        <span>收入来源</span>
+                        <!--<input type="text" class="new-item" data-type="income">-->
+                        <!--<button type="button" class="btn btn-default add-btn">+</button>-->
+                        <i class="glyphicon glyphicon-usd icon-color"></i>
+                        <ul class="b-ul item-list" id="income">
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <ul>
+
+
+        </ul>
+        <div class="modal fade animated lightSpeedIn" id="myModal">
+            <div class="modal-dialog modal-sm" style="margin-top: 250px">
+                <div class="modal-content" style="background-color: rgb(246,245,223); ">
+                    <div class="modal-body">
+                    <textarea id="myText" class="new-item" rows="3" maxlength="200"
+                              data-type="important"></textarea>
+                        <input type="hidden" id="myColor" value="rgb(246,245,223)">
+
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default btn-color"
+                                    style="background: rgb(246,245,223);">
+                            </button>
+                            <button type="button" class="btn btn-default btn-color"
+                                    style="background: rgb(237,197,202);">
+                            </button>
+                            <button type="button" class="btn btn-default btn-color"
+                                    style="background: rgb(77,152,188);">
+                            </button>
+                            <button type="button" class="btn btn-default btn-color"
+                                    style="background: rgb(148,197,218);">
+                            </button>
+                            <button type="button" class="btn btn-default btn-color"
+                                    style="background: rgb(223,221,238);">
+                            </button>
+                        </div>
+                        <div>
+                            <a href="javascript:void(0)" class="add-ps">点击添加注释</a>
+                            <textarea name="ps" id="psText" class="psText" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="save-btn">Save</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+        <div class="modal fade" id="alertModal">
+            <div class="modal-dialog modal-sm" style="margin-top: 250px">
+                <div class="modal-content">
+                    <div class="modal-body" id="alertText">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-close" data-dismiss="modal"
+                        style="margin: auto">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="inModal">
+            <div class="modal-dialog modal-sm" style="margin-top: 250px">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        画布ID:
+                        <input type="text" id="inId">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-close" data-dismiss="modal"
+                        >Close</button>
+                        <button type="button" class="btn btn-primary" id="in-btn">导入</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer-autumn" style="z-index: 99999;">
+    <div class="container">
+
+        <div class="footer-links">
+            <ul class="site-footer-links">
+                <li><a href="/" target="_blank">驯鹿官网</a></li>
+                <li><a href="http://www.wondersgroup.com/" target="_blank">万达信息股份有限公司</a></li>
+                <li><a href="/page/hezuo" target="_blank">合作伙伴</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-copyright">
+            Powered by <a href="/" target="_blank">ReindeerJob</a>
+            <script async="" src="//www.google-analytics.com/analytics.js"></script><script src="//hm.baidu.com/hm.js?c69368b3b0c31d56a6bfb92e3c6e5579"></script><script>
+            var _hmt = _hmt || [];
+            (function() {
+                var hm = document.createElement("script");
+                hm.src = "//hm.baidu.com/hm.js?c69368b3b0c31d56a6bfb92e3c6e5579";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(hm, s);
+            })();
+        </script>
+            <script>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-69603241-1', 'auto');
+                ga('send', 'pageview');
+
+            </script>
+            <a class="mlm" href="/archive/course">课程存档</a>
+            <div class="mts">课程内容版权均归<a href="/">驯鹿</a>所有&nbsp;<a href="http://www.miibeian.gov.cn/" target="_blank">沪ICP备05002296号-11</a></div>
+        </div>
+
+    </div>
+</div>
+<script src="js/json2.js"></script>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/mustache.js/mustache.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/underscore/underscore.js"></script>
+<script src="bower_components/backbone/backbone.js"></script>
+<script src="js/backbone.localStorage.js"></script>
+<script src="js/index.js"></script>
+<script src="js/modalView.js"></script>
+<script type="text/template" id="item-template">
+    <div class="btn-group btn-group-sm item-btn-group" role="group">
+        <button type="button" class="glyphicon glyphicon-trash btn btn-default destroy "></button>
+        <button type="button" class="glyphicon glyphicon-list-alt btn btn-default" data-toggle="popover"
+                data-content="<%- ps %>">
+
+        </button>
+    </div>
+
+    <div class="b-item" style="background: <%- colors%>">
+        <label><%- title %></label>
+        <!--<textarea name="title" class="title-text"><%- title %></textarea>-->
+    </div>
+</script>
+</body>
+</html>

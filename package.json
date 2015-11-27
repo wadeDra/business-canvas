@@ -1,0 +1,23 @@
+{
+  "name": "business-canvas",
+  "version": "1.0.0",
+  "description": "商业模式画布",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zelonggit/business-canvas.git"
+  },
+  "author": "Wade",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zelonggit/business-canvas/issues"
+  },
+  "homepage": "https://github.com/zelonggit/business-canvas#readme",
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "gulp-connect":"^*"
+  }
+}
